@@ -79,5 +79,5 @@ df = clean_data(df)
 fig = create_figure(df)
 pio.write_html(fig, file='plot.html')
 assembly_index(filepath='plot.html',
-              layout='visulisation',
+              layout='page',
               title='Interactive graphs')
