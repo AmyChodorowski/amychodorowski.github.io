@@ -1,5 +1,5 @@
 "use strict";
-// Transcrypt'ed from Python, 2020-05-05 17:22:12
+// Transcrypt'ed from Python, 2020-05-05 17:33:56
 function hello () {
 	var __symbols__ = ['__py3.7__', '__esv5__'];
 	var __all__ = {};
