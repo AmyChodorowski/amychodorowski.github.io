@@ -1,1 +1,6 @@
+# PyCharm folders and files
+.idea
+
+
+# Jekyll folders and files
 _site/
