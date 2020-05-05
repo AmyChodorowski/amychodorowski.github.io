@@ -4,6 +4,7 @@
 import pandas as pd
 import plotly.express as px
 import plotly.io as pio
+from bs4 import BeautifulSoup
 
 
 def clean_data(df):
@@ -49,12 +50,33 @@ def create_figure(df):
                      hover_data=['Bedrooms', 'Wifi', 'Cable TV', 'Kitchen', 'Washer', 'Number of Reviews'],
                      color='Room Type')
     fig.update_layout(template='plotly_white')
-    fig.update_layout(title='How much should you charge in a Berlin neighborhood?')
 
     return fig
 
 
+def assembly_index(filepath, layout, title):
+    """
+    Added Jekyll headings
+    :return:
+    """
+    filepath_r = filepath
+    filepath_w = 'index.html'
+    with open(filepath_r, 'r') as contents:
+        save = contents.read()
+    with open(filepath_w, 'w') as contents:
+        contents.write('---\n')
+        contents.write('layout: %s\n' % layout)
+        contents.write('title: %s\n' % title)
+        contents.write('---\n')
+    with open(filepath_w, 'a') as contents:
+        soup = BeautifulSoup(save, 'html.parser')
+        content = soup.find("div")
+        contents.write(str(content))
+
 df = pd.read_csv('airbnb.csv')
 df = clean_data(df)
 fig = create_figure(df)
-pio.write_html(fig, file='index.html', auto_open=True)
+pio.write_html(fig, file='plot.html')
+assembly_index(filepath='plot.html',
+              layout='visulisation',
+              title='How much should you charge in a Berlin neighborhood?')
