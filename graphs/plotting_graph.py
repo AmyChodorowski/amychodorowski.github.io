@@ -50,6 +50,7 @@ def create_figure(df):
                      hover_data=['Bedrooms', 'Wifi', 'Cable TV', 'Kitchen', 'Washer', 'Number of Reviews'],
                      color='Room Type')
     fig.update_layout(template='plotly_white')
+    fig.update_layout(title='How much should you charge in a Berlin neighborhood?')
 
     return fig
 
@@ -79,4 +80,4 @@ fig = create_figure(df)
 pio.write_html(fig, file='plot.html')
 assembly_index(filepath='plot.html',
               layout='visulisation',
-              title='How much should you charge in a Berlin neighborhood?')
+              title='Interactive graphs')
