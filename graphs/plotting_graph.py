@@ -69,6 +69,10 @@ def assembly_index(filepath, layout, title):
         contents.write('layout: %s\n' % layout)
         contents.write('title: %s\n' % title)
         contents.write('---\n')
+        contents.write('<div>\n')
+        contents.write(' <h1>%s</h1>\n' % title)
+        contents.write(' <p>Creating Plotly graphs in Python</a></p>\n')
+        contents.write('</div>\n')
     with open(filepath_w, 'a') as contents:
         soup = BeautifulSoup(save, 'html.parser')
         content = soup.find("div")
