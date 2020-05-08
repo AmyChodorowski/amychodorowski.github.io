@@ -4,3 +4,4 @@
 
 # Jekyll folders and files
 _site/
+.jekyll-cache
