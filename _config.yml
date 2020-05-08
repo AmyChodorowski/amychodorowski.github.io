@@ -1,2 +1,5 @@
 name: Amy Chodorowski's GitHub page
 markdown: kramdown
+
+url: /__javascript__
+static_dir: examples/__javascript__
