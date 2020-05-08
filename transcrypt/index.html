@@ -1,23 +1,26 @@
 ---
-layout: page
-title: Examples
+layout: default
+title: Transcrypt examples
 ---
+<div class="container">
 <div>
- <h1>Examples</h1>
- <p>Running python code</a></p>
+ <h1>Transcrypt examples</h1>
+ <p>Using the <a href="https://www.transcrypt.org/">python library Transcrypt</a>, python code has been written and then converted into JavaScript</p>
 </div>
-<div>
- <h2>Basic example using Transcrypt</h2>
- <script src="js/hello.js"></script>
+
+<div class="section">
+ <h2>Hello example</h2>
  <p>
   <div id = "groet">...</div>
  </p>
  <p>Your Name: <input name="name" type="text" maxlength="80" id="Name" value=""/> [Please enter your name]<br><br>
  <button onclick=hello.greet()>Refresh the greeting!</button>
  </p>
+ <script type="module">import * as hello from './js/hello.js'; window.hello = hello;</script>
 </div>
-<div>
- <h2>Ping-poing example using Transcrypt</h2>
+
+<div class="section">
+ <h2><a href="https://www.transcrypt.org/examples#pong_demo">Ping-pong</a></h2>
  <font face="arial" >
  <style>
  #A, #Z, #K, #M, #space, #enter {
@@ -38,7 +41,7 @@ title: Examples
   <font color="444444" size="3">
   <h3>Hit the spacebar to start</h3><br>
  </div>
-    
+
  <div id="canvas_frame">
   <canvas id="canvas"></canvas>
  </div>
@@ -54,10 +57,10 @@ title: Examples
   <div id='enter' <br>Enter</div>
                 
   <div>&nbsp;</div>
- <div>
+ </div>
             
  <script type="module">import * as pong from "./js/pong.js"; window.pong = pong;</script>
  <style>body {visibility: visible;}</style>
+</div>
 
- </div>
 </div>
