@@ -216,7 +216,7 @@ class Game:
         self.pause = True  # Start game in paused state
         self.keyCode = None
 
-
+        self.textFrame = document.getElementById('text_frame')
         self.canvasFrame = document.getElementById('canvas_frame')
         self.buttonsFrame = document.getElementById('buttons_frame')
 
