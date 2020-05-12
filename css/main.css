@@ -1,11 +1,11 @@
 body {
-    margin: 60px auto;
+    margin: 20px auto;
     width: 90%;
+	padding: 0px;
 }
 
 nav ul li{
     display: inline;
-    margin-right: 20px;
 }
 
 a {
@@ -34,9 +34,12 @@ p {
     color: #333;
 }
 
+.container{
+    width: 85%;
+}
+
 .section {
 	border-top: 1px solid #d5d5d5;
-	
 }
 
 
@@ -52,5 +55,4 @@ footer ul {
 }
 footer ul li {
     display: inline;
-    margin-right: 20px;
 }
