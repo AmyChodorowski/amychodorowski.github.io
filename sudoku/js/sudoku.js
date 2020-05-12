@@ -17,6 +17,7 @@ $(document).ready(function () {
     });
 });
 
+
 function populateGrid(grid, data) {
     grid.find('td').each(function (index, td) {
         $(td).text(data[index] || '');
