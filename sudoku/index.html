@@ -3,6 +3,7 @@ layout: default
 title: Sudoku solver
 ---
 <script type="module">import * as sudoku from "./js/sudoku.js";</script>
+<script type="text/javascript" src="./js/sudoku_recursive.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <div class="container">
 <div>
@@ -12,11 +13,11 @@ title: Sudoku solver
 
 <div class="section">
  <h2><a href="https://www.youtube.com/watch?v=G_UYXzGuqvM">Recursive method</a></h2>
- <button onclick="">Start</button> <button onclick="">Stop</button> <button onclick="">Restart</button>
+ <button onclick="getGrid()">Get</button> <button onclick="removeCell(document.getElementById('debug_input').value)">Remove</button>
  <br>
  <br>
- <div class="recursiveSudoku">
-	<table class="recursiveSudoku">
+ <div>
+	<table class="sudoku" id="recursiveSudoku">
 	  <colgroup><col><col><col></colgroup>
 	  <colgroup><col><col><col></colgroup>
 	  <colgroup><col><col><col></colgroup>
@@ -35,5 +36,9 @@ title: Sudoku solver
 	</table>
  </div>
 </div>
+<br>
+<br>
+<p>Input:<input  type="text" maxlength="80" id="debug_input" value="7"/></p>
+<p>Output:<input type="text" maxlength="80" id="debug_output" value=""/></p>
 
 </div>

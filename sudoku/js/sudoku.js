@@ -12,7 +12,7 @@ $(document).ready(function () {
     ];
 
     // Populate grids with data.
-    $('table[class^="recursiveSudoku"]').each(function (index, grid) {
+    $('table[class^="sudoku"]').each(function (index, grid) {
         populateGrid($(grid), data);
     });
 });
