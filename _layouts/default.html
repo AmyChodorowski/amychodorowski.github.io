@@ -1,46 +1,47 @@
 <html>
-  <head>
-    <title>{{ page.title }}</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/css/main.css">
-  </head>
-  <body>
-    <div id='navbarDiv'>
-     <nav class="navbar navbar-inverse">
-       <div class="container-fluid">
-         <div class="navbar-header">
-           <a id="refreshButton" class="navbar-brand" href="/">Home</a>
-         </div>
-         <ul class="nav navbar-nav">
-           <li class="dropdown">
-             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Visulisations
-             <span class="caret"></span></a>
-             <ul class="dropdown-menu">
-               <li id='buttonFlocking'><a href="/flocking">Flocking</a></li>
-               <li id='buttonSpirographs'><a href="/spirographs">Spirographs</a></li>
-             </ul>
-           </li>
-		   <li class="dropdown">
-             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Running Python
-             <span class="caret"></span></a>
-             <ul class="dropdown-menu">
-               <li id='buttonExamples'><a href="/examples">Examples</a></li>
-               <li id='buttonGraph'><a href="/graphs">Interactive graphs</a></li>
-             </ul>
-           </li>
+ <head>
+  <title>{{ page.title }}</title>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
+   <link rel="stylesheet" type="text/css" href="/css/main.css">
+ </head>
+ <body>
+  <div id='navbarDiv'>
+   <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+     <div class="navbar-header">
+      <a id="refreshButton" class="navbar-brand" href="/">Home</a>
+     </div>
+     <ul class="nav navbar-nav">
+      <li class="dropdown">
+       <a class="dropdown-toggle" data-toggle="dropdown" href="#">Visulisations
+        <span class="caret"></span></a>
+         <ul class="dropdown-menu">
+          <li id='buttonFlocking'><a href="/flocking">Flocking</a></li>
+           <li id='buttonSpirographs'><a href="/spirographs">Spirographs</a></li>
          </ul>
-       </div>
-     </nav>
-   </div>
-    <div id='container'>
-     {{ content }}
-    </div>
-    <footer>
-     <ul>
-      <li><a href="https://github.com/AmyChodorowski">github.com/AmyChodorowski</a></li>
+      </li>
+      <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#">Running Python
+       <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+         <li id='buttonExamples'><a href="/transcrypt">Transcrypt examples</a></li>
+          <li id='buttonGraph'><a href="/graphs">Interactive graphs</a></li>
+        </ul>
+      </li>
      </ul>
-    </footer>
-  </body>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </div>
+   </nav>
+  </div>
+  <div id='container'>
+   {{ content }}
+  </div>
+  <br>
+  <footer>
+   <ul>
+    <li><a href="https://github.com/AmyChodorowski">github.com/AmyChodorowski</a></li>
+   </ul>
+  </footer>
+ </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"> </script> 
 </html>

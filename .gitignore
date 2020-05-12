@@ -2,5 +2,11 @@
 .idea
 
 
+# Transcrypt
+__target__
+__javascript__
+
+
 # Jekyll folders and files
 _site/
+.jekyll-cache
