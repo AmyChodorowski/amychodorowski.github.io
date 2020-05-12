@@ -1,20 +1,18 @@
 function removeCell(index) {
 	
-	var cell = returnCell(index)
+	var cell = getCell(index)
 	cell.textContent = ''
 }
 
-
-
 function populateCell(index, value) {
 	
-	var cell = returnCell(index)
+	var cell = getCell(index)
 	cell.textContent = value
 	cell.style.color = "green"
 	cell.style.fontWeight = "normal"
 }
 
-function returnCell(index) {
+function getCell(index) {
 	
 	var table = document.getElementById("recursiveSudoku");
 	var value_1 = Math.floor(index/27)
@@ -34,12 +32,62 @@ function returnCell(index) {
 
 function getGrid() {
 	
-	var data = []
+	var grid = []
 	
-	var i;
-	for (i = 0; i < 81; i++) {
-	  var cell = returnCell(i)
-	  data.push(cell.textContent)
+	var i, j;
+	for (i = 0; i < 9; i++) {
+		grid[i] = [];
+		for (j = 0; j < 9; j++) {
+			var cell = getCell(i*9 + j)
+			grid[i][j] = cell.textContent
+		}
 	}
-	document.getElementById("debug_output").value = data
+	document.getElementById("debug_output").value = grid
+}
+
+function doSuduko(){
+	
+	grid = getGrid()
+	solve(grid)
+	
+}
+
+function possible(i, j, n){
+	
+	// Check rows
+	
+	
+	// Check columns
+	
+	
+	// Check box
+	
+	return True
+	
+}
+
+function solve(grid){
+	var i, j, v
+	
+	var i, j;
+	for (i = 0; i < 9; i++) {
+		for (j = 0; j < 9; j++) {
+			if (grid[i][j] !== '') {
+				index = i*9 + j
+				for (v = 1; v < 10; v++) {
+					if (possible(i, j, v)) {
+						grid[i][j] = v
+						populateCell(index,v)
+							
+						solve()
+							
+						grid[i][j] = ''
+						removeCell(index,v)
+					}
+				return
+				}
+			}
+		}
+	var stop
+	}
 }
