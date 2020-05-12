@@ -8,59 +8,43 @@ title: Transcrypt examples
  <p>Using the <a href="https://www.transcrypt.org/">python library Transcrypt</a>, python code has been written and then converted into JavaScript</p>
 </div>
 
-<div class="section">
- <h2>Hello example</h2>
- <p>
-  <div id = "groet">...</div>
+<div class="section"> 
+ <h2><a href="https://github.com/bunkahle/Transcrypt-Examples">Hello example</a></h2>
+ 
+ <p><div id = "groet">What is your name?</div></p>
+ <p>Your Name: <input name="name" type="text" maxlength="80" id="Name" value=""/>
+  <br>
+   <br>
+    <button onclick=hello.greet()>Refresh the greeting!</button>
  </p>
- <p>Your Name: <input name="name" type="text" maxlength="80" id="Name" value=""/> [Please enter your name]<br><br>
- <button onclick=hello.greet()>Refresh the greeting!</button>
- </p>
+ 
  <script type="module">import * as hello from './js/hello.js'; window.hello = hello;</script>
 </div>
 
 <div class="section">
  <h2><a href="https://www.transcrypt.org/examples#pong_demo">Ping-pong</a></h2>
- <font face="arial" >
- <style>
- #A, #Z, #K, #M, #space, #enter {
-  -webkit-user-select:none;
-  -khtml-user-drag:none;
-  -khtml-user-select:none;
-  -moz-user-select:none;
-  -moz-user-select:-moz-none;
-  -ms-user-select:none;
-  user-select:none
- }
- body {
-  visibility: hidden;
- }
- </style>
-            
+ <font face="arial" >   
+ 
  <div id='text_frame'>
   <font color="444444" size="3">
-  <h3>Hit the spacebar to start</h3><br>
+  <p><kbd>Space</kbd> to start</p>
+  <p><kbd>Enter</kbd> to reset points</p>
  </div>
-
+ 
  <div id="canvas_frame">
   <canvas id="canvas"></canvas>
- </div>
-             
- <div id="buttons_frame" style="position:absolute; font-size:30">
-  <div id='A' <br>A</div>
-  <div id='Z' <br>Z</div>
+  </div>
+
+ <div id="buttons_frame" style="font-size:30">
+                <div id='A'     style="position: relative; background-color: gray;  left:0; top:0; width:80; height:100; text-align:center; vertical-align: text-top"><br><kbd>A</kbd></div>
+                <div id='Z'     style="position: relative; background-color: black; left:0; top:0; width:80; height:100; text-align:center; vertical-align: text-top"><br><kbd>Z</kbd></div>
                 
-  <div id='K' <br>K</div>
-  <div id='M' <br>M</div>
+                <div id='K'     style="position: relative; background-color: gray;  left:495; top:-200; width:80; height:100; text-align:center"><br><kbd>K</kbd></div>
+                <div id='M'     style="position: relative; background-color: black; left:495; top:-200; width:80; height:100; text-align:center"><br><kbd>M</kbd></div>
     
-  <div id='space' <br>Space</div>
-  <div id='enter' <br>Enter</div>
-                
-  <div>&nbsp;</div>
- </div>
+                <div id='space' style="position: relative; background-color: yellow;  left:0; top:0; width:100; height:100" </div>
+                <div id='enter' style="position: relative; background-color: black;   left:100; top:0; width:100; height:100" </div>
+			</div>
             
  <script type="module">import * as pong from "./js/pong.js"; window.pong = pong;</script>
- <style>body {visibility: visible;}</style>
-</div>
-
 </div>
