@@ -177,11 +177,6 @@ class Scoreboard(Attribute):
             'left': self.game.orthoX(position * orthoWidth), 'top': self.game.orthoY(fieldHeight // 2 + self.nameShift)
         })) for name, position in (('AZ keys:', -7 / 16), ('KM keys:', 1 / 16))]
 
-        self.hintLabel = __new__(fabric.Text('[spacebar] starts game, [enter] resets score', {
-            'fill': 'white', 'fontFamily': 'arial', 'fontSize': '{}'.format(self.game.canvas.width / 70),
-            'left': self.game.orthoX(-7 / 16 * orthoWidth), 'top': self.game.orthoY(fieldHeight // 2 + self.hintShift)
-        }))
-
         self.image = __new__(fabric.Line([
             self.game.orthoX(-orthoWidth // 2), self.game.orthoY(fieldHeight // 2),
             self.game.orthoX(orthoWidth // 2), self.game.orthoY(fieldHeight // 2)
@@ -206,7 +201,6 @@ class Scoreboard(Attribute):
         for playerLabel, scoreLabel in zip(self.playerLabels, self.scoreLabels):
             self.game.canvas.add(playerLabel)
             self.game.canvas.add(scoreLabel)
-            self.game.canvas.add(self.hintLabel)
         self.game.canvas.add(self.image)
 
 
@@ -216,7 +210,6 @@ class Game:
         self.pause = True  # Start game in paused state
         self.keyCode = None
 
-        self.textFrame = document.getElementById('text_frame')
         self.canvasFrame = document.getElementById('canvas_frame')
         self.buttonsFrame = document.getElementById('buttons_frame')
 
@@ -240,13 +233,6 @@ class Game:
 
         for key in ('A', 'Z', 'K', 'M', 'space', 'enter'):
             button = document.getElementById(key)
-            button.addEventListener('mousedown',
-                                    (lambda aKey: lambda: self.mouseOrTouch(aKey, True))(key))  # Returns inner lambda
-            button.addEventListener('touchstart', (lambda aKey: lambda: self.mouseOrTouch(aKey, True))(key))
-            button.addEventListener('mouseup', (lambda aKey: lambda: self.mouseOrTouch(aKey, False))(key))
-            button.addEventListener('touchend', (lambda aKey: lambda: self.mouseOrTouch(aKey, False))(key))
-            button.style.cursor = 'pointer'
-            button.style.userSelect = 'none'
             self.buttons.append(button)
 
         self.time = + __new__(Date)
@@ -257,17 +243,6 @@ class Game:
     def install(self):
         for attribute in self.attributes:
             attribute.install()
-
-    def mouseOrTouch(self, key, down):
-        if down:
-            if key == 'space':
-                self.keyCode = space
-            elif key == 'enter':
-                self.keyCode = enter
-            else:
-                self.keyCode = ord(key)
-        else:
-            self.keyCode = None
 
     def update(self):  # Note that update and draw are not synchronized
         oldTime = self.time
@@ -324,20 +299,9 @@ class Game:
         self.canvasLeft = 0.5 * (self.pageWidth - self.canvasWidth)
         self.canvasHeight = 0.6 * self.canvasWidth
 
-        self.buttonsTop = self.canvasTop + self.canvasHeight + 50
-        self.buttonsWidth = 500
-
-        self.textFrame.style.top = self.textTop;
-        self.textFrame.style.left = self.canvasLeft + 0.05 * self.canvasWidth
-        self.textFrame.style.width = 0.9 * self.canvasWidth
-
         self.canvasFrame.style.top = self.canvasTop
         self.canvasFrame.style.left = self.canvasLeft
         self.canvas.setDimensions({'width': self.canvasWidth, 'height': self.canvasHeight})
-
-        self.buttonsFrame.style.top = self.buttonsTop
-        self.buttonsFrame.style.left = 0.5 * (self.pageWidth - self.buttonsWidth)
-        self.buttonsFrame.style.width = self.canvasWidth
 
         self.install()
         self.commit()

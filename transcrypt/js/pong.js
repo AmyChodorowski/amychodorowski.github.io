@@ -1,4 +1,4 @@
-// Transcrypt'ed from Python, 2020-05-08 11:37:03
+// Transcrypt'ed from Python, 2020-05-12 11:16:19
 import {AssertionError, AttributeError, BaseException, DeprecationWarning, Exception, IndexError, IterableError, KeyError, NotImplementedError, RuntimeWarning, StopIteration, UserWarning, ValueError, Warning, __JsIterator__, __PyIterator__, __Terminal__, __add__, __and__, __call__, __class__, __envir__, __eq__, __floordiv__, __ge__, __get__, __getcm__, __getitem__, __getslice__, __getsm__, __gt__, __i__, __iadd__, __iand__, __idiv__, __ijsmod__, __ilshift__, __imatmul__, __imod__, __imul__, __in__, __init__, __ior__, __ipow__, __irshift__, __isub__, __ixor__, __jsUsePyNext__, __jsmod__, __k__, __kwargtrans__, __le__, __lshift__, __lt__, __matmul__, __mergefields__, __mergekwargtrans__, __mod__, __mul__, __ne__, __neg__, __nest__, __or__, __pow__, __pragma__, __proxy__, __pyUseJsNext__, __rshift__, __setitem__, __setproperty__, __setslice__, __sort__, __specialattrib__, __sub__, __super__, __t__, __terminal__, __truediv__, __withblock__, __xor__, abs, all, any, assert, bool, bytearray, bytes, callable, chr, copy, deepcopy, delattr, dict, dir, divmod, enumerate, filter, float, getattr, hasattr, input, int, isinstance, issubclass, len, list, map, max, min, object, ord, pow, print, property, py_TypeError, py_iter, py_metatype, py_next, py_reversed, py_typeof, range, repr, round, set, setattr, sorted, str, sum, tuple, zip} from './org.transcrypt.__runtime__.js';
 import {fabric} from './com.fabricjs.js';
 var __name__ = '__main__';
@@ -179,7 +179,6 @@ export var Scoreboard =  __class__ ('Scoreboard', [Attribute], {
 			}
 			return __accu0__;
 		}) ();
-		self.hintLabel = new fabric.Text ('[spacebar] starts game, [enter] resets score', dict ({'fill': 'white', 'fontFamily': 'arial', 'fontSize': '{}'.format (self.game.canvas.width / 70), 'left': self.game.orthoX ((-(7) / 16) * orthoWidth), 'top': self.game.orthoY (Math.floor (fieldHeight / 2) + self.hintShift)}));
 		self.image = new fabric.Line ([self.game.orthoX (Math.floor (-(orthoWidth) / 2)), self.game.orthoY (Math.floor (fieldHeight / 2)), self.game.orthoX (Math.floor (orthoWidth / 2)), self.game.orthoY (Math.floor (fieldHeight / 2))], dict ({'stroke': 'white'}));
 	});},
 	get increment () {return __get__ (this, function (self, playerIndex) {
@@ -202,7 +201,6 @@ export var Scoreboard =  __class__ ('Scoreboard', [Attribute], {
 		for (var [playerLabel, scoreLabel] of zip (self.playerLabels, self.scoreLabels)) {
 			self.game.canvas.add (playerLabel);
 			self.game.canvas.add (scoreLabel);
-			self.game.canvas.add (self.hintLabel);
 		}
 		self.game.canvas.add (self.image);
 	});}
@@ -213,7 +211,6 @@ export var Game =  __class__ ('Game', [object], {
 		self.serviceIndex = (Math.random () > 0.5 ? 1 : 0);
 		self.pause = true;
 		self.keyCode = null;
-		self.textFrame = document.getElementById ('text_frame');
 		self.canvasFrame = document.getElementById ('canvas_frame');
 		self.buttonsFrame = document.getElementById ('buttons_frame');
 		self.canvas = new fabric.Canvas ('canvas', dict ({'backgroundColor': 'black', 'originX': 'center', 'originY': 'center'}));
@@ -237,28 +234,6 @@ export var Game =  __class__ ('Game', [object], {
 		self.buttons = [];
 		for (var key of tuple (['A', 'Z', 'K', 'M', 'space', 'enter'])) {
 			var button = document.getElementById (key);
-			button.addEventListener ('mousedown', (function __lambda__ (aKey) {
-				return (function __lambda__ () {
-					return self.mouseOrTouch (aKey, true);
-				});
-			}) (key));
-			button.addEventListener ('touchstart', (function __lambda__ (aKey) {
-				return (function __lambda__ () {
-					return self.mouseOrTouch (aKey, true);
-				});
-			}) (key));
-			button.addEventListener ('mouseup', (function __lambda__ (aKey) {
-				return (function __lambda__ () {
-					return self.mouseOrTouch (aKey, false);
-				});
-			}) (key));
-			button.addEventListener ('touchend', (function __lambda__ (aKey) {
-				return (function __lambda__ () {
-					return self.mouseOrTouch (aKey, false);
-				});
-			}) (key));
-			button.style.cursor = 'pointer';
-			button.style.userSelect = 'none';
 			self.buttons.append (button);
 		}
 		self.time = +(new Date);
@@ -268,22 +243,6 @@ export var Game =  __class__ ('Game', [object], {
 	get install () {return __get__ (this, function (self) {
 		for (var attribute of self.attributes) {
 			attribute.install ();
-		}
-	});},
-	get mouseOrTouch () {return __get__ (this, function (self, key, down) {
-		if (down) {
-			if (key == 'space') {
-				self.keyCode = space;
-			}
-			else if (key == 'enter') {
-				self.keyCode = enter;
-			}
-			else {
-				self.keyCode = ord (key);
-			}
-		}
-		else {
-			self.keyCode = null;
 		}
 	});},
 	get py_update () {return __get__ (this, function (self) {
@@ -344,17 +303,9 @@ export var Game =  __class__ ('Game', [object], {
 		}
 		self.canvasLeft = 0.5 * (self.pageWidth - self.canvasWidth);
 		self.canvasHeight = 0.6 * self.canvasWidth;
-		self.buttonsTop = (self.canvasTop + self.canvasHeight) + 50;
-		self.buttonsWidth = 500;
-		self.textFrame.style.top = self.textTop;
-		self.textFrame.style.left = self.canvasLeft + 0.05 * self.canvasWidth;
-		self.textFrame.style.width = 0.9 * self.canvasWidth;
 		self.canvasFrame.style.top = self.canvasTop;
 		self.canvasFrame.style.left = self.canvasLeft;
 		self.canvas.setDimensions (dict ({'width': self.canvasWidth, 'height': self.canvasHeight}));
-		self.buttonsFrame.style.top = self.buttonsTop;
-		self.buttonsFrame.style.left = 0.5 * (self.pageWidth - self.buttonsWidth);
-		self.buttonsFrame.style.width = self.canvasWidth;
 		self.install ();
 		self.commit ();
 		self.draw ();
