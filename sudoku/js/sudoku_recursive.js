@@ -1,9 +1,3 @@
-function removeCell(index) {
-	
-	var cell = getCell(index)
-	cell.textContent = ''
-}
-
 function populateCell(index, value) {
 	
 	var cell = getCell(index)
@@ -30,6 +24,58 @@ function getCell(index) {
 	
 }
 
+function findLastIndex(){
+	var i
+	for (i = 80; i >= 0; i--) {
+		if (getCell(i).textContent == '') {
+			// document.getElementById("debug_output").value = i
+			return i
+		}
+	}
+}
+
+function findLastCommand(commands){
+	var i_last = findLastIndex()
+	var total = commands.length
+	
+	var i_command = 0
+	while (i_command < total) {
+		i_command++
+		if (commands[i_command][0] == i_last) {
+			break
+		}
+	}
+	
+	// document.getElementById("debug_output").value = commands[i_command]
+	return i_command
+	
+}
+
+function drawSolution(commands){
+	var total = findLastCommand(commands)
+	let sleeptime = 1
+	function* clock()
+	{
+		let com = 0
+		while( com <= total )
+		{
+			com++
+			populateCell(commands[com-1][0], commands[com-1][1]); // actually, just do stuff you wanna do.
+			setTimeout(
+				()=>
+				{
+					clk.next()
+				}
+				, sleeptime
+			)
+			yield
+		}
+	}
+
+	let clk = clock()
+	clk.next()	
+}
+
 function getGrid() {
 	
 	var grid = []
@@ -42,52 +88,101 @@ function getGrid() {
 			grid[i][j] = cell.textContent
 		}
 	}
-	document.getElementById("debug_output").value = grid
+	// document.getElementById("debug_output").value = grid
+	return grid
+}
+
+function disableButton(){
+	var input = document.querySelector('[id="buttonRecursive"]');
+	input.setAttribute('disabled', true);
 }
 
 function doSuduko(){
 	
-	grid = getGrid()
-	solve(grid)
+	document.getElementById("buttonRecursive").disabled = true
+	
+	var grid = getGrid()
+	var commands = []
+
+	
+	solveSuduko(grid, commands)
+	
+	if (commands.length > 0) {
+		drawSolution(commands)
+	}	
+}
+
+function checkPossible(i, j, n){
+	
+	var grid = getGrid()
+	possible(i, j, n, grid)
 	
 }
 
-function possible(i, j, n){
+function possible(i, j, n, grid){
 	
 	// Check rows
+	for (jj = 0; jj < 9; jj++) {
+		if (grid[i][jj] == n) {
+			// document.getElementById("debug_output").value = "NO - in the row"
+			return false
+		}
+	}
 	
 	
 	// Check columns
+	for (ii = 0; ii < 9; ii++) {
+		if (grid[ii][j] == n) {
+			// document.getElementById("debug_output").value = "NO - in the column"
+			return false
+		}
+	}
 	
 	
 	// Check box
+	var i0 = Math.floor(i/3) * 3
+	var j0 = Math.floor(j/3) * 3
 	
-	return True
+	for (ii = 0; ii < 3; ii++) {
+		for (jj = 0; jj < 3; jj++) {
+			if (grid[i0+ii][j0+jj] == n) {
+				// document.getElementById("debug_output").value = "NO - in the box"
+				return false
+			}
+		}
+	}
+	// document.getElementById("debug_output").value = "Possible"
+	return true
 	
 }
 
-function solve(grid){
-	var i, j, v
-	
-	var i, j;
+var solveSuduko = function(grid, commands){
+
+	var i, j, v, index;
 	for (i = 0; i < 9; i++) {
 		for (j = 0; j < 9; j++) {
-			if (grid[i][j] !== '') {
+			if (grid[i][j] == "") {
 				index = i*9 + j
 				for (v = 1; v < 10; v++) {
-					if (possible(i, j, v)) {
+					if (possible(i, j, v, grid)) {
 						grid[i][j] = v
-						populateCell(index,v)
-							
-						solve()
+						
+						// populateCell(index,v)
+						var c = [index, v]
+						commands.push(c)
+
+						solveSuduko(grid, commands)
 							
 						grid[i][j] = ''
-						removeCell(index,v)
+						
+						// populateCell(index,'')
+						var c = [index, '']
+						commands.push(c)
 					}
-				return
 				}
+				return;
 			}
 		}
-	var stop
 	}
+	// document.getElementById("debug_output").value = "Found a solution"
 }
