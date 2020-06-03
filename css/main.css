@@ -62,9 +62,11 @@ table.sudoku {
     border-collapse: collapse;
     font-family: Calibri, sans-serif;
 }
+
 table.sudoku colgroup, tbody {
     border: solid medium;
 }
+
 table.sudoku td {
     border: solid thin;
     height: 2em;
