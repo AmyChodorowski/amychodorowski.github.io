@@ -1,4 +1,28 @@
-var animateRecursive = true
+import * as tools from './sudoku_tools.js';
+
+var animateRecursive = true;
+
+
+export function start(){
+	
+	document.getElementById("buttonRecursiveStart").disabled = true
+	
+	var grid = getRecursiveGrid()
+	var commands = []
+
+	solveRecursive(grid, commands)
+	
+	animateRecursive = true
+	if (commands.length > 0) {
+		drawRecursiveSolution(commands)
+	}	
+}
+
+export function stop(){
+
+	animateRecursive = false
+
+}
 
 function populateRecursiveCell(index, value) {
 	
@@ -94,72 +118,6 @@ function getRecursiveGrid() {
 	return grid
 }
 
-
-function startRecursive(){
-	
-	document.getElementById("buttonRecursiveStart").disabled = true
-	
-	var grid = getRecursiveGrid()
-	var commands = []
-
-	solveRecursive(grid, commands)
-	
-	animateRecursive = true
-	if (commands.length > 0) {
-		drawRecursiveSolution(commands)
-	}	
-}
-
-function stopRecursive(){
-
-	animateRecursive = false
-
-}
-
-function testPossible(i, j, n){
-	
-	var grid = getRecursiveGrid()
-	possible(i, j, n, grid)
-	
-}
-
-function possible(i, j, n, grid){
-	
-	// Check rows
-	for (jj = 0; jj < 9; jj++) {
-		if (grid[i][jj] == n) {
-			// document.getElementById("debug_output").value = "NO - in the row"
-			return false
-		}
-	}
-	
-	
-	// Check columns
-	for (ii = 0; ii < 9; ii++) {
-		if (grid[ii][j] == n) {
-			// document.getElementById("debug_output").value = "NO - in the column"
-			return false
-		}
-	}
-	
-	
-	// Check box
-	var i0 = Math.floor(i/3) * 3
-	var j0 = Math.floor(j/3) * 3
-	
-	for (ii = 0; ii < 3; ii++) {
-		for (jj = 0; jj < 3; jj++) {
-			if (grid[i0+ii][j0+jj] == n) {
-				// document.getElementById("debug_output").value = "NO - in the box"
-				return false
-			}
-		}
-	}
-	// document.getElementById("debug_output").value = "Possible"
-	return true
-	
-}
-
 var solveRecursive = function(grid, commands){
 
 	var i, j, v, index;
@@ -168,7 +126,7 @@ var solveRecursive = function(grid, commands){
 			if (grid[i][j] == "") {
 				index = i*9 + j
 				for (v = 1; v < 10; v++) {
-					if (possible(i, j, v, grid)) {
+					if (tools.possible(i, j, v, grid)) {
 						grid[i][j] = v
 						
 						var c = [index, v]

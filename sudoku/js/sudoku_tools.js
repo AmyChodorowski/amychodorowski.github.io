@@ -19,6 +19,8 @@ export function populateGrid(grid) {
 
 export function possible(i, j, n, grid){
 	
+	var jj, ii
+	
 	// Check rows
 	for (jj = 0; jj < 9; jj++) {
 		if (grid[i][jj] == n) {
@@ -52,4 +54,21 @@ export function possible(i, j, n, grid){
 	// document.getElementById("debug_output").value = "Possible"
 	return true
 	
+}
+
+export function getCell(name, index) {
+	
+	var table = document.getElementById(name);
+	var value_1 = Math.floor(index/27)
+    var tbody = table.getElementsByTagName("tbody")[value_1];
+	
+	var rows = tbody.getElementsByTagName("tr");
+	var value_2 = Math.floor(index/9) - value_1*3
+	var row = rows[value_2];
+	
+	var cells = row.getElementsByTagName("td")
+	var value_3 = index%9
+	var cell = cells[value_3]
+	
+	return cell
 }
