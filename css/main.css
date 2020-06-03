@@ -58,15 +58,14 @@ footer ul li {
     display: inline;
 }
 
-
 table.sudoku {
     border-collapse: collapse;
     font-family: Calibri, sans-serif;
 }
-.sudoku colgroup, tbody {
+table.sudoku colgroup, tbody {
     border: solid medium;
 }
-.sudoku td {
+table.sudoku td {
     border: solid thin;
     height: 2em;
     width: 2em;
