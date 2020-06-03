@@ -12,12 +12,12 @@ title: Sudoku solver
 
 <div class="section">
  <h2><a href="https://www.youtube.com/watch?v=G_UYXzGuqvM">Recursive method</a></h2>
- <input type=button id="buttonRecursiveStart" value="Start">
- <input type=button id="buttonRecursiveStop"  value="Stop">
+ <input type=button id="buttonRecursiveStart"    value="Start">
+ <input type=button id="buttonRecursiveRestart"  value="Restart" disabled=true>
  <script type="module">
 	import * as recursive from './js/sudoku_recursive.js';
 	document.getElementById("buttonRecursiveStart").addEventListener('click', recursive.start);
-	document.getElementById("buttonRecursiveStop").addEventListener('click', recursive.stop);
+	document.getElementById("buttonRecursiveRestart").addEventListener('click', recursive.restart);
  </script>
  <br>
  <br>
@@ -46,8 +46,7 @@ title: Sudoku solver
 
 <div class="section">
  <h2><a href="">Other method</a></h2>
- <button id="buttonOther" onclick=>Start</button>
- <button id="buttonOther" onclick=>Stop</button>
+ <button id="buttonOther" onclick=>Start</button disabled=true>
  <br>
  <br>
  <div>

@@ -1,3 +1,5 @@
+/* Populate sudukos */
+
 export function populateGrid(grid) {
 	
 	var data = [
@@ -16,6 +18,9 @@ export function populateGrid(grid) {
         $(td).text(data[index] || '');
     });
 }
+
+
+/* Functions to check if a move is possible */
 
 export function possible(i, j, n, grid){
 	
@@ -56,6 +61,8 @@ export function possible(i, j, n, grid){
 	
 }
 
+/* Gets a cell from the sudoku table by an index [0-80] */
+
 export function getCell(name, index) {
 	
 	var table = document.getElementById(name);
@@ -72,3 +79,31 @@ export function getCell(name, index) {
 	
 	return cell
 }
+
+export function populateCell(name, index, value) {
+	
+	var cell = getCell(name, index)
+	cell.textContent = value
+	cell.style.color = "green"
+	cell.style.fontWeight = "normal"
+}
+
+/* Gets gets the values from the sudoku table and puts into a grid matrix */
+
+export function getGrid(name) {
+	
+	var grid = []
+	
+	var i, j;
+	for (i = 0; i < 9; i++) {
+		grid[i] = [];
+		for (j = 0; j < 9; j++) {
+			var cell = getCell(name, i*9 + j)
+			grid[i][j] = cell.textContent
+		}
+	}
+	// document.getElementById("debug_output").value = grid
+	return grid
+}
+
+
