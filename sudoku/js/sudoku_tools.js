@@ -1,6 +1,23 @@
 /* Populate sudukos */
 
-export function populateGrid(grid) {
+export function populateGrid(grid, type) {
+	
+	var data = set_up_easy()
+	
+	if (type == "Easy") {
+		data = set_up_easy()		
+	} else if (type == "Medium") {
+		data = set_up_med()
+	} else {
+		data = set_up_hard()
+	}
+	
+    grid.find('td').each(function (index, td) {
+        $(td).text(data[index] || '');
+    });
+}
+
+function set_up_easy() {
 	
 	var data = [
         5, 3, 0, 0, 7, 0, 0, 0, 0, // 0x0
@@ -14,10 +31,44 @@ export function populateGrid(grid) {
         0, 0, 0, 0, 8, 0, 0, 7, 9  // 2x2
     ];
 	
-    grid.find('td').each(function (index, td) {
-        $(td).text(data[index] || '');
-    });
+	return data
 }
+
+function set_up_med() {
+	
+	var data = [
+        0, 2, 0, 6, 0, 8, 0, 0, 0, // 0x0
+        5, 8, 0, 0, 0, 9, 7, 0, 0, // 0x1
+        0, 0, 0, 0, 4, 0, 0, 0, 0, // 0x2
+        3, 7, 0, 0, 0, 0, 5, 0, 0, // 1x0
+        6, 0, 0, 0, 0, 0, 0, 0, 4, // 1x1
+        0, 0, 8, 0, 0, 0, 0, 1, 3, // 1x2
+        0, 0, 0, 0, 2, 0, 0, 0, 0, // 2x0
+        0, 0, 9, 8, 0, 0, 0, 3, 6, // 2x1
+        0, 0, 0, 3, 0, 6, 0, 9, 0  // 2x2
+    ];
+	
+	return data
+}
+
+
+function set_up_hard() {
+	
+	var data = [
+        0, 2, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 6, 0, 0, 0, 0, 3,
+		0, 7, 4, 0, 8, 0, 0, 0, 0,
+		0, 0, 0, 0, 0, 3, 0, 0, 2,
+		0, 8, 0, 0, 4, 0, 0, 1, 0,
+		6, 0, 0, 5, 0, 0, 0, 0, 0,
+		0, 0, 0, 0, 1, 0, 7, 8, 0,
+		5, 0, 0, 0, 0, 9, 0, 0, 0,
+		0, 0, 0, 0, 0, 0, 0, 4, 0		
+    ];
+	
+	return data
+}
+
 
 
 /* Functions to check if a move is possible */

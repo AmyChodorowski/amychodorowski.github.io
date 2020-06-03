@@ -7,7 +7,25 @@ title: Sudoku solver
 <div class="container">
 <div>
  <h1>Sudoku solver</h1>
- <p>Different ways to solve a Sudoku</p>
+ <p>Different ways to solve a Sudoku.</p> 
+ <p><a href="https://dingo.sbs.arizona.edu/~sandiway/sudoku/examples.html">Choose the sudoku to solve:</a></p>
+ <input type=button class="buttonType" value="Easy">
+ <input type=button class="buttonType" value="Medium">
+ <input type=button class="buttonType" value="Hard">
+ <input type=text id="textSudokuType" value="Easy">
+ <script type="module">
+	import * as sudoku from "./js/sudoku.js";
+	
+	$(document).ready(function () {
+		$('input[class="buttonType"]').each(function (index, input) {
+				input.addEventListener('click', sudoku.populateType);
+		});
+	});
+	
+ </script> 
+ 
+ <br>
+ <br>
 </div>
 
 <div class="section">

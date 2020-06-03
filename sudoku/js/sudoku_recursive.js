@@ -8,6 +8,7 @@ export function start(){
 	
 	document.getElementById("buttonRecursiveStart").disabled = true
 	document.getElementById("buttonRecursiveRestart").disabled = false
+	// TODO: Disable type button
 	
 	var grid = getRecursiveGrid()
 	var commands = []
@@ -23,10 +24,14 @@ export function start(){
 export function restart(){
 
 	animateRecursive = false
+	
+	// TODO : Correct type
+	// TODO : Correct format
 	tools.populateGrid($(document.getElementById("recursiveSudoku")))
 	
 	document.getElementById("buttonRecursiveStart").disabled = false
 	document.getElementById("buttonRecursiveRestart").disabled = true
+	// TODO: Undisbale type button
 }
 
 /* Simple functions */
@@ -70,21 +75,21 @@ var solve = function(grid, commands){
 			}
 		}
 	}
-	// document.getElementById("debug_output").value = "Found a solution"
+	// Found a solution
 }
 
 /* Drawing functions */
 
 function drawRecursiveSolution(commands){
 	var total = findLastCommand(commands)
-	let sleeptime = 1
+	let sleeptime = 0.1
 	function* clock()
 	{
 		let com = 0
 		while( com <= total && animateRecursive)
 		{
 			com++
-			populateRecursiveCell(commands[com-1][0], commands[com-1][1]); // actually, just do stuff you wanna do.
+			populateRecursiveCell(commands[com-1][0], commands[com-1][1]); 
 			setTimeout(
 				()=>
 				{
