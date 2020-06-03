@@ -13,7 +13,8 @@ title: Sudoku solver
 
 <div class="section">
  <h2><a href="https://www.youtube.com/watch?v=G_UYXzGuqvM">Recursive method</a></h2>
- <button id="buttonRecursive" onclick="doSuduko()">Start</button>
+ <input type=button id="buttonRecursiveStart" onclick="startRecursive()" value="Start">
+ <input type=button id="buttonRecursiveStop"  onclick="stopRecursive()"  value="Stop">
  <br>
  <br>
  <div>
@@ -38,10 +39,34 @@ title: Sudoku solver
 </div>
 <br>
 <br>
-<!-- <p>Input:<input  type="text" maxlength="80" id="debug_input" value="7"/></p> -->
-<!-- <p>Y: <input  type="text" maxlength="80" id="debug_y" value="0"/></p> -->
-<!-- <p>X: <input  type="text" maxlength="80" id="debug_x" value="6"/></p> -->
-<!-- <p>n: <input  type="text" maxlength="80" id="debug_n" value="6"/></p> -->
-<!-- <p>Output:<input type="text" maxlength="80" id="debug_output" value=""/></p> -->
+
+<div class="section">
+ <h2><a href="">Other method</a></h2>
+ <button id="buttonOther" onclick=>Start</button>
+ <button id="buttonOther" onclick=>Stop</button>
+ <br>
+ <br>
+ <div>
+	<table class="sudoku" id="recursiveOther">
+	  <colgroup><col><col><col></colgroup>
+	  <colgroup><col><col><col></colgroup>
+	  <colgroup><col><col><col></colgroup>
+	  <tbody>
+	   <tr> <td>  <td>  <td>  <td>  <td>  <td>  <td>  <td>  <td> 
+	   <tr> <td>  <td>  <td>  <td>  <td>  <td>  <td>  <td>  <td>
+	   <tr> <td>  <td>  <td>  <td>  <td>  <td>  <td>  <td>  <td> 
+	  <tbody>
+	   <tr> <td>  <td>  <td>  <td>  <td>  <td>  <td>  <td>  <td> 
+	   <tr> <td>  <td>  <td>  <td>  <td>  <td>  <td>  <td>  <td>
+	   <tr> <td>  <td>  <td>  <td>  <td>  <td>  <td>  <td>  <td> 
+	  <tbody>
+	   <tr> <td>  <td>  <td>  <td>  <td>  <td>  <td>  <td>  <td> 
+	   <tr> <td>  <td>  <td>  <td>  <td>  <td>  <td>  <td>  <td>
+	   <tr> <td>  <td>  <td>  <td>  <td>  <td>  <td>  <td>  <td> 
+	</table>
+ </div>
+</div>
+<br>
+<br>
 
 </div>

@@ -1,12 +1,14 @@
-function populateCell(index, value) {
+var animateRecursive = true
+
+function populateRecursiveCell(index, value) {
 	
-	var cell = getCell(index)
+	var cell = getRecursiveCell(index)
 	cell.textContent = value
 	cell.style.color = "green"
 	cell.style.fontWeight = "normal"
 }
 
-function getCell(index) {
+function getRecursiveCell(index) {
 	
 	var table = document.getElementById("recursiveSudoku");
 	var value_1 = Math.floor(index/27)
@@ -24,18 +26,18 @@ function getCell(index) {
 	
 }
 
-function findLastIndex(){
+function findRecursiveLastIndex(){
 	var i
 	for (i = 80; i >= 0; i--) {
-		if (getCell(i).textContent == '') {
+		if (getRecursiveCell(i).textContent == '') {
 			// document.getElementById("debug_output").value = i
 			return i
 		}
 	}
 }
 
-function findLastCommand(commands){
-	var i_last = findLastIndex()
+function findRecursiveLastCommand(commands){
+	var i_last = findRecursiveLastIndex()
 	var total = commands.length
 	
 	var i_command = 0
@@ -51,16 +53,16 @@ function findLastCommand(commands){
 	
 }
 
-function drawSolution(commands){
-	var total = findLastCommand(commands)
+function drawRecursiveSolution(commands){
+	var total = findRecursiveLastCommand(commands)
 	let sleeptime = 1
 	function* clock()
 	{
 		let com = 0
-		while( com <= total )
+		while( com <= total && animateRecursive)
 		{
 			com++
-			populateCell(commands[com-1][0], commands[com-1][1]); // actually, just do stuff you wanna do.
+			populateRecursiveCell(commands[com-1][0], commands[com-1][1]); // actually, just do stuff you wanna do.
 			setTimeout(
 				()=>
 				{
@@ -76,7 +78,7 @@ function drawSolution(commands){
 	clk.next()	
 }
 
-function getGrid() {
+function getRecursiveGrid() {
 	
 	var grid = []
 	
@@ -84,7 +86,7 @@ function getGrid() {
 	for (i = 0; i < 9; i++) {
 		grid[i] = [];
 		for (j = 0; j < 9; j++) {
-			var cell = getCell(i*9 + j)
+			var cell = getRecursiveCell(i*9 + j)
 			grid[i][j] = cell.textContent
 		}
 	}
@@ -92,29 +94,31 @@ function getGrid() {
 	return grid
 }
 
-function disableButton(){
-	var input = document.querySelector('[id="buttonRecursive"]');
-	input.setAttribute('disabled', true);
-}
 
-function doSuduko(){
+function startRecursive(){
 	
-	document.getElementById("buttonRecursive").disabled = true
+	document.getElementById("buttonRecursiveStart").disabled = true
 	
-	var grid = getGrid()
+	var grid = getRecursiveGrid()
 	var commands = []
 
+	solveRecursive(grid, commands)
 	
-	solveSuduko(grid, commands)
-	
+	animateRecursive = true
 	if (commands.length > 0) {
-		drawSolution(commands)
+		drawRecursiveSolution(commands)
 	}	
 }
 
-function checkPossible(i, j, n){
+function stopRecursive(){
+
+	animateRecursive = false
+
+}
+
+function testPossible(i, j, n){
 	
-	var grid = getGrid()
+	var grid = getRecursiveGrid()
 	possible(i, j, n, grid)
 	
 }
@@ -156,7 +160,7 @@ function possible(i, j, n, grid){
 	
 }
 
-var solveSuduko = function(grid, commands){
+var solveRecursive = function(grid, commands){
 
 	var i, j, v, index;
 	for (i = 0; i < 9; i++) {
@@ -167,15 +171,13 @@ var solveSuduko = function(grid, commands){
 					if (possible(i, j, v, grid)) {
 						grid[i][j] = v
 						
-						// populateCell(index,v)
 						var c = [index, v]
 						commands.push(c)
 
-						solveSuduko(grid, commands)
+						solveRecursive(grid, commands)
 							
 						grid[i][j] = ''
-						
-						// populateCell(index,'')
+
 						var c = [index, '']
 						commands.push(c)
 					}
