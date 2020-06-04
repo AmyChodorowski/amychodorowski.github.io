@@ -8,7 +8,7 @@ title: Sudoku solver
 <div>
  <h1>Sudoku solver</h1>
  <p>Different ways to solve a Sudoku.</p> 
- <p><a href="https://dingo.sbs.arizona.edu/~sandiway/sudoku/examples.html">Choose the sudoku to solve:</a></p>
+ <p><a href="https://dingo.sbs.arizona.edu/~sandiway/sudoku/examples.html">Choose the sudoku to be solved:</a></p>
  <input type=button class="buttonType" value="Easy">
  <input type=button class="buttonType" value="Medium">
  <input type=button class="buttonType" value="Hard">
@@ -23,14 +23,14 @@ title: Sudoku solver
 	});
 	
  </script> 
- 
  <br>
  <br>
+ <p><b>Make sure all solvers are reset before choosing a sudoku</b></p> 
 </div>
 
 <div class="section">
  <h2>Recursive method</h2>
- <p>Inspired by a <a href="https://www.youtube.com/watch?v=G_UYXzGuqvM">Computerphile YouTube video</a>, this method exploits the computer’s ability to brute force solution by carrying out thousands of operations rapidly. However the solver is elegantly written using a simple solving function that is implemented recursively, backtracking when the solution doesn't work. <p> 
+ <p>Inspired by a <a href="https://www.youtube.com/watch?v=G_UYXzGuqvM">Computerphile YouTube video</a>, this method exploits the computer’s ability to brute force a solution by carrying out thousands of operations rapidly. However the solver is elegantly written using a simple solving function that is implemented recursively, backtracking when the solution doesn't work.<p> 
  <p>The animation below is a <b>very slowed version of the implementation</b>. In fact, the sudoku is solved before the animation begins even begins!</p>
  <input type=button class="buttonStart"   id="buttonRecursiveStart"    value="Start">
  <input type=button class="buttonRestart" id="buttonRecursiveRestart"  value="Restart" disabled=true>
@@ -66,13 +66,11 @@ title: Sudoku solver
 
 <div class="section">
  <h2>Constraint method</h2>
- <p>Classically sudokus are solved using constaints to identify solutions, the harder the sudoku the more reasoning is required in the constraints. Each colour represents an iteration of the grid with the particular set of constraints.<p> 
+ <p>Classically sudokus are solved using constaints to identify a solution, the harder the sudoku the more reasoning is required in the constraints. Each colour represents an iteration of determing values from the particular set of constraints.<p> 
  <p><b>Simple</b> uses the most underlying constraints based off of the rules of sudoku:
   <ol>
-   <li>Solution values lies between 1 to 9</li>
-   <li>A number can not be repeated in a column</li>
-   <li>A number can not be repeated in a row</li>
-   <li>A number can not be repeated in a box</li>
+   <li>Values must lie between 1 to 9</li>
+   <li>A value can not be repeated in a column, row or box</li>
  </ol> 
  </p>
  <p><b>Complex</b> is under construction</p>
