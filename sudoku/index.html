@@ -7,13 +7,33 @@ title: Sudoku solver
 <div class="container">
 <div>
  <h1>Sudoku solver</h1>
- <p>Different ways to solve a Sudoku</p>
+ <p>Different ways to solve a Sudoku.</p> 
+ <p><a href="https://dingo.sbs.arizona.edu/~sandiway/sudoku/examples.html">Choose the sudoku to be solved:</a></p>
+ <input type=button class="buttonType" value="Easy">
+ <input type=button class="buttonType" value="Medium">
+ <input type=button class="buttonType" value="Hard">
+ <input type=text id="textSudokuType" value="Easy">
+ <script type="module">
+	import * as sudoku from "./js/sudoku.js";
+	
+	$(document).ready(function () {
+		$('input[class="buttonType"]').each(function (index, input) {
+				input.addEventListener('click', sudoku.populateType);
+		});
+	});
+	
+ </script> 
+ <br>
+ <br>
+ <p><b>Make sure all solvers are reset before choosing a sudoku</b></p> 
 </div>
 
 <div class="section">
- <h2><a href="https://www.youtube.com/watch?v=G_UYXzGuqvM">Recursive method</a></h2>
- <input type=button id="buttonRecursiveStart"    value="Start">
- <input type=button id="buttonRecursiveRestart"  value="Restart" disabled=true>
+ <h2>Recursive method</h2>
+ <p>Inspired by a <a href="https://www.youtube.com/watch?v=G_UYXzGuqvM">Computerphile YouTube video</a>, this method exploits the computer’s ability to brute force a solution by carrying out thousands of operations rapidly. However the solver is elegantly written using a simple solving function that is implemented recursively, backtracking when the solution doesn't work.<p> 
+ <p>The animation below is a <b>very slowed version of the implementation</b>. In fact, the sudoku is solved before the animation begins even begins!</p>
+ <input type=button class="buttonStart"   id="buttonRecursiveStart"    value="Start">
+ <input type=button class="buttonRestart" id="buttonRecursiveRestart"  value="Restart" disabled=true>
  <script type="module">
 	import * as recursive from './js/sudoku_recursive.js';
 	document.getElementById("buttonRecursiveStart").addEventListener('click', recursive.start);
@@ -22,7 +42,7 @@ title: Sudoku solver
  <br>
  <br>
  <div>
-	<table class="sudoku" id="recursiveSudoku">
+	<table class="sudoku" id="sudokuRecursive">
 	  <colgroup><col><col><col></colgroup>
 	  <colgroup><col><col><col></colgroup>
 	  <colgroup><col><col><col></colgroup>
@@ -45,12 +65,27 @@ title: Sudoku solver
 <br>
 
 <div class="section">
- <h2><a href="">Other method</a></h2>
- <button id="buttonOther" onclick=>Start</button disabled=true>
+ <h2>Constraint method</h2>
+ <p>Classically sudokus are solved using constaints to identify a solution, the harder the sudoku the more reasoning is required in the constraints. Each colour represents an iteration of determing values from the particular set of constraints.<p> 
+ <p><b>Simple</b> uses the most underlying constraints based off of the rules of sudoku:
+  <ol>
+   <li>Values must lie between 1 to 9</li>
+   <li>A value can not be repeated in a column, row or box</li>
+ </ol> 
+ </p>
+ <p><b>Complex</b> is under construction</p>
+ <input type=button class="buttonStart"   id="buttonConstraintSimple"    value="Simple">
+ <input type=button class="buttonStart"   id="buttonConstraintComplex"   value="Complex">
+ <input type=button class="buttonRestart" id="buttonConstraintRestart"   value="Restart" disabled=true>
+ <script type="module">
+	import * as constraint from './js/sudoku_constraint.js';
+	document.getElementById("buttonConstraintSimple").addEventListener('click', constraint.startSimple);
+	document.getElementById("buttonConstraintRestart").addEventListener('click', constraint.restart);
+ </script>
  <br>
  <br>
  <div>
-	<table class="sudoku" id="recursiveOther">
+	<table class="sudoku" id="sudokuConstraint">
 	  <colgroup><col><col><col></colgroup>
 	  <colgroup><col><col><col></colgroup>
 	  <colgroup><col><col><col></colgroup>
