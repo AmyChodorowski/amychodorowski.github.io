@@ -13,7 +13,12 @@ export function populateGrid(grid, type) {
 	}
 	
     grid.find('td').each(function (index, td) {
-        $(td).text(data[index] || '');
+        // Populate with the correct value
+		$(td).text(data[index] || '');
+		
+		// Reset format
+		td.style.color = "";
+		td.style.fontWeight = "bold";
     });
 }
 

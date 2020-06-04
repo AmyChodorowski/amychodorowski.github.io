@@ -6,15 +6,23 @@ var animateRecursive = true;
 
 export function start(){
 	
+	// Disbable and enable buttons
 	document.getElementById("buttonRecursiveStart").disabled = true
 	document.getElementById("buttonRecursiveRestart").disabled = false
-	// TODO: Disable type button
+	$(document).ready(function () {
+		$('input[class="buttonType"]').each(function (index, input) {
+				input.disabled = true;
+		});
+	});
 	
+	// Prepare variables
 	var grid = getRecursiveGrid()
 	var commands = []
 
+	// Solve sudoku
 	solve(grid, commands)
 	
+	// Animate solution
 	animateRecursive = true
 	if (commands.length > 0) {
 		drawRecursiveSolution(commands)
@@ -23,15 +31,21 @@ export function start(){
 
 export function restart(){
 
+	// Stop animation
 	animateRecursive = false
 	
-	// TODO : Correct type
-	// TODO : Correct format
-	tools.populateGrid($(document.getElementById("recursiveSudoku")))
+	// Reset the sudoku
+	var type = document.getElementById("textSudokuType").value
+	tools.populateGrid($(document.getElementById("recursiveSudoku")), type)
 	
+	// Disbable and enable buttons
 	document.getElementById("buttonRecursiveStart").disabled = false
 	document.getElementById("buttonRecursiveRestart").disabled = true
-	// TODO: Undisbale type button
+	$(document).ready(function () {
+		$('input[class="buttonType"]').each(function (index, input) {
+				input.disabled = false;
+		});
+	});
 }
 
 /* Simple functions */
