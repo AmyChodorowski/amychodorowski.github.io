@@ -162,4 +162,66 @@ export function getGrid(name) {
 	return grid
 }
 
+/* Get index of unsolved values */
+
+export function findUnsolved(name) {
+	
+	var unsolved = []
+	var coor
+	var grid = getGrid(name)
+	
+	var i, j;
+	for (i = 0; i < 9; i++) {
+		for (j = 0; j < 9; j++) {
+			if (grid[i][j] == "") {
+				var coor = [i, j]
+				unsolved.push(coor)
+			}
+		}
+	}
+	
+	return unsolved
+}
+
+/* Find possible values */
+
+export function possibleValues(grid, i, j) {
+	
+	var values = []
+	
+	var v;
+	for (v = 1; v < 10; v++) {
+		if (possible(i, j, v, grid)) {
+			values.push(v)
+		}
+	}
+	
+	return values
+}
+
+
+/* Setting .disabled for all buttonType */
+
+export function disableAllButtonType(bool) {
+	$(document).ready(function () {
+		$('input[class="buttonType"]').each(function (index, input) {
+				input.disabled = bool;
+		});
+	});
+}
+
+/* Check if any solutions are running */
+
+export function checkRunningSolutions(bool) {
+	var solutions = document.getElementsByClassName("buttonStart")
+	
+	var i
+	for(i=0; i<solutions.length; i++){
+		if (solutions[i].disabled){
+			return true
+		} 
+	}
+	
+	return false
+}
 

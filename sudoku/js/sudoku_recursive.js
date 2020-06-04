@@ -9,11 +9,7 @@ export function start(){
 	// Disbable and enable buttons
 	document.getElementById("buttonRecursiveStart").disabled = true
 	document.getElementById("buttonRecursiveRestart").disabled = false
-	$(document).ready(function () {
-		$('input[class="buttonType"]').each(function (index, input) {
-				input.disabled = true;
-		});
-	});
+	tools.disableAllButtonType(true)
 	
 	// Prepare variables
 	var grid = getRecursiveGrid()
@@ -36,29 +32,30 @@ export function restart(){
 	
 	// Reset the sudoku
 	var type = document.getElementById("textSudokuType").value
-	tools.populateGrid($(document.getElementById("recursiveSudoku")), type)
+	tools.populateGrid($(document.getElementById("sudokuRecursive")), type)
 	
 	// Disbable and enable buttons
 	document.getElementById("buttonRecursiveStart").disabled = false
 	document.getElementById("buttonRecursiveRestart").disabled = true
-	$(document).ready(function () {
-		$('input[class="buttonType"]').each(function (index, input) {
-				input.disabled = false;
-		});
-	});
+	if (tools.checkRunningSolutions()){
+		tools.disableAllButtonType(true)
+	} else{
+		tools.disableAllButtonType(false)
+	}
+	
 }
 
 /* Simple functions */
 
 function getRecursiveGrid() {
 	
-	var grid = tools.getGrid("recursiveSudoku")
+	var grid = tools.getGrid("sudokuRecursive")
 	return grid
 }
 
 function populateRecursiveCell(index, value) {
 	
-	tools.populateCell("recursiveSudoku", index, value)
+	tools.populateCell("sudokuRecursive", index, value)
 }
 
 /* Solving functions */
@@ -122,7 +119,7 @@ function drawRecursiveSolution(commands){
 function findLastIndex(){
 	var i
 	for (i = 80; i >= 0; i--) {
-		if (tools.getCell("recursiveSudoku", i).textContent == '') {
+		if (tools.getCell("sudokuRecursive", i).textContent == '') {
 			return i
 		}
 	}
